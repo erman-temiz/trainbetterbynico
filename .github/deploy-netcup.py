@@ -1,5 +1,6 @@
 """Publish the static site with explicit TLS and verify the public response."""
 
+from contextlib import contextmanager
 from ftplib import FTP_TLS
 from html import escape
 from io import BytesIO
@@ -27,6 +28,40 @@ def build_pages(street):
     return pages
 
 
+@contextmanager
+def verified_ftp(host, tls):
+    candidates = (host, "a981d.netcup.net", "a981d.webhosting.systems")
+    original_ip = None
+
+    for candidate in dict.fromkeys(candidates):
+        ftp = FTP_TLS(context=tls, timeout=20)
+        try:
+            try:
+                ftp.connect(candidate, 21)
+            except OSError:
+                if candidate == host:
+                    raise
+                continue
+            peer_ip = ftp.sock.getpeername()[0]
+            if original_ip is None:
+                original_ip = peer_ip
+            if peer_ip != original_ip:
+                continue
+            try:
+                ftp.auth()
+            except ssl.SSLCertVerificationError as error:
+                print(f"FTPES-Zertifikat für {candidate}: {error.verify_message}")
+                continue
+
+            print("FTPES-Zertifikat erfolgreich geprüft.")
+            yield ftp
+            return
+        finally:
+            ftp.close()
+
+    raise SystemExit("Für den Netcup-FTP-Endpunkt wurde kein gültiger Zertifikatsname gefunden.")
+
+
 def deploy():
     keys = ("NETCUP_FTP_HOST", "NETCUP_FTP_USER", "NETCUP_FTP_PASSWORD", "IMPRESSUM_STRASSE")
     missing = [key for key in keys if not os.environ.get(key)]
@@ -41,8 +76,7 @@ def deploy():
             raise SystemExit("Die Domain liefert noch keine eigene Seite über HTTPS.")
 
     batch = uuid4().hex
-    with FTP_TLS(context=tls, timeout=20) as ftp:
-        ftp.connect(host, 21)
+    with verified_ftp(host, tls) as ftp:
         ftp.login(user, password)
         ftp.prot_p()
         for name, content in pages.items():
