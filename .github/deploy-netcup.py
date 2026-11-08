@@ -1,6 +1,7 @@
 """Publish the static site with explicit TLS and verify the public response."""
 
 from contextlib import contextmanager
+from hashlib import sha256
 from ftplib import FTP_TLS, error_perm
 from html import escape
 from io import BytesIO
@@ -32,8 +33,16 @@ def collect_files():
 
 def build_pages(street):
     pages = {}
+    # Cache-busting: every HTML page references styles.css with a content hash,
+    # so browsers and server caches never mix new pages with an old stylesheet.
+    css_version = sha256((ROOT / "styles.css").read_bytes()).hexdigest()[:10]
     for name in collect_files():
         data = (ROOT / name).read_bytes()
+        if name.endswith(".html"):
+            source = data.decode("utf-8")
+            if 'href="styles.css"' not in source:
+                raise SystemExit(f"Stylesheet-Link fehlt in {name}.")
+            data = source.replace('href="styles.css"', f'href="styles.css?v={css_version}"').encode("utf-8")
         if name in ADDRESS_PAGES:
             source = data.decode("utf-8")
             if source.count(ADDRESS_TOKEN) != 1:
