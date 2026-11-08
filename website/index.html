@@ -253,7 +253,7 @@
           <p class="eyebrow">Regelmäßige Trainingsbetreuung</p>
           <h3>3 oder 6 Monate – mit festem Trainingsrhythmus.</h3>
           <p>Für alle, die dranbleiben möchten: ein festes monatliches Kontingent an Trainingseinheiten, monatlich abgerechnet. Preise und Konditionen erhalten Sie gerne auf Anfrage.</p>
-          <a class="btn btn-primary" href="mailto:info@trainbetterbynico.de?subject=Anfrage%20Trainingsbetreuung">Konditionen anfragen</a>
+          <a class="btn btn-primary" href="#kontakt" data-anliegen="Trainingsbetreuung (3 oder 6 Monate)">Konditionen anfragen</a>
         </div>
         <div class="plan-opts">
           <div><strong>1× pro Woche</strong><span>4 Einheiten / Monat</span></div>
@@ -322,21 +322,46 @@
         <p class="eyebrow">Kontakt</p>
         <h2>Bereit für den ersten Schritt?</h2>
         <p class="lead" style="color:#d9e1ef">Schreiben Sie Nico für Ihren Ersttermin oder bei Fragen zum Training. Sie erhalten zeitnah eine Rückmeldung.</p>
+        <ul class="contact-list">
+          <li>
+            <a href="mailto:info@trainbetterbynico.de">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              <span><small>E-Mail</small><strong>info@trainbetterbynico.de</strong></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/trainbetterbynico/" rel="noopener" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
+              <span><small>Instagram</small><strong>@trainbetterbynico</strong></span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <ul class="contact-list">
-        <li>
-          <a href="mailto:info@trainbetterbynico.de?subject=Anfrage%20Ersttermin">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-            <span><small>E-Mail</small><strong>info@trainbetterbynico.de</strong></span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/trainbetterbynico/" rel="noopener" target="_blank">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
-            <span><small>Instagram</small><strong>@trainbetterbynico</strong></span>
-          </a>
-        </li>
-      </ul>
+      <form class="contact-form" action="kontakt.php" method="post" accept-charset="UTF-8">
+        <h3>Anfrage senden</h3>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <input type="hidden" name="t" id="form-t" value="">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="field">Anliegen
+          <select name="anliegen" id="form-anliegen">
+              <option>Ersttermin</option>
+              <option>Personal Training</option>
+              <option>Trainingsbetreuung (3 oder 6 Monate)</option>
+              <option>Ernährungsberatung</option>
+              <option>Athletiktraining für Vereine</option>
+              <option>Sonstiges</option>
+          </select>
+        </label>
+        <div class="field-row">
+          <label class="field">Name *<input type="text" name="name" required maxlength="100" autocomplete="name"></label>
+          <label class="field"><span>Telefon <span class="opt">(optional)</span></span><input type="tel" name="telefon" maxlength="50" autocomplete="tel"></label>
+        </div>
+        <label class="field">E-Mail *<input type="email" name="email" required maxlength="200" autocomplete="email"></label>
+        <label class="field">Nachricht *<textarea name="nachricht" rows="5" required maxlength="5000" placeholder="Ihre Ziele, Fragen oder Wunschtermine"></textarea></label>
+        <label class="check"><input type="checkbox" name="datenschutz" required> <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. *</span></label>
+        <button class="btn btn-primary" type="submit">Anfrage senden <span aria-hidden="true">→</span></button>
+        <p class="form-note">* Pflichtfelder. Bitte keine sensiblen Gesundheitsdaten senden – diese besprechen Sie am besten persönlich beim Ersttermin.</p>
+      </form>
     </div>
   </section>
 
@@ -354,6 +379,22 @@
 
 <script>
 (function () {
+  // Kontaktformular: Startzeit, Anliegen aus Buttons, Fehlermeldungen
+  var t = document.getElementById('form-t');
+  if (t) t.value = Math.floor(Date.now() / 1000);
+  var sel = document.getElementById('form-anliegen');
+  document.querySelectorAll('[data-anliegen]').forEach(function (a) {
+    a.addEventListener('click', function () { if (sel) sel.value = a.getAttribute('data-anliegen'); });
+  });
+  var msgs = {
+    pflicht: 'Bitte füllen Sie alle Pflichtfelder aus und bestätigen Sie die Datenschutzerklärung.',
+    email: 'Bitte prüfen Sie Ihre E-Mail-Adresse.',
+    zeit: 'Das ging etwas zu schnell – bitte senden Sie das Formular noch einmal.',
+    senden: 'Die Nachricht konnte leider nicht gesendet werden. Bitte schreiben Sie direkt an info@trainbetterbynico.de.'
+  };
+  var f = new URLSearchParams(location.search).get('fehler');
+  var box = document.getElementById('form-error');
+  if (f && box && msgs[f]) { box.textContent = msgs[f]; box.hidden = false; }
   var btn = document.querySelector('.menu-toggle');
   var nav = document.getElementById('hauptnav');
   if (!btn || !nav) return;

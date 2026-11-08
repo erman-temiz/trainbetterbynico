@@ -125,8 +125,13 @@ def deploy():
 
     for name, content in pages.items():
         with urlopen(f"{PUBLIC_URL}{name}?deploy={batch}", timeout=15, context=tls) as response:
-            if response.read() != content:
-                raise SystemExit(f"HTTPS-Prüfung fehlgeschlagen: {name}")
+            body = response.read()
+        if name.endswith(".php"):
+            # PHP wird auf dem Server ausgeführt: der Quelltext darf nie öffentlich sichtbar sein.
+            if b"<?php" in body:
+                raise SystemExit(f"PHP wird nicht ausgeführt, Quelltext sichtbar: {name}")
+        elif body != content:
+            raise SystemExit(f"HTTPS-Prüfung fehlgeschlagen: {name}")
     print(f"Alle {len(pages)} Dateien wurden über HTTPS verifiziert.")
 
 
