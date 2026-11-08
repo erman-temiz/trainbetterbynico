@@ -147,6 +147,12 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .start-banner .wrap { position: relative; z-index: 2; }
 .start-banner-text { max-width: 460px; }
 .start-banner-text .lead { margin: 0; }
+.banner-preise .start-banner-img { object-position: 75% center; }
+.banner-preise::before { background: linear-gradient(90deg, rgba(242,242,242,.97) 0%, rgba(242,242,242,.93) 40%, rgba(242,242,242,.5) 50%, rgba(242,242,242,0) 60%); }
+.banner-preise .start-banner-text { max-width: 420px; }
+@media (min-width: 1500px) {
+  .banner-preise::before { background: linear-gradient(90deg, rgba(242,242,242,.97) 0%, rgba(242,242,242,.93) 45%, rgba(242,242,242,.5) 55%, rgba(242,242,242,0) 65%); }
+}
 
 .start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
