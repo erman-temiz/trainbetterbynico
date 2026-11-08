@@ -96,12 +96,12 @@ p { margin: 0 0 1em; }
 .hero .lead { margin-bottom: 1.8rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-logo {
-  background: var(--white); border-radius: 24px; padding: 40px 32px;
+  background: var(--white); border-radius: 24px; padding: 64px 48px 44px;
   box-shadow: 0 30px 60px -30px rgba(6,28,64,.45);
   display: grid; place-items: center; text-align: center;
 }
-.hero-logo img { width: min(320px, 100%); }
-.hero-logo p { margin: 20px 0 0; font-size: .9rem; color: var(--muted); font-weight: 600; }
+.hero-logo img { width: min(230px, 75%); }
+.hero-logo p { margin: 34px 0 0; font-size: .9rem; color: var(--muted); font-weight: 600; }
 .trust { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 2rem 0 0; padding: 0; list-style: none; font-size: .92rem; font-weight: 600; color: var(--ink); }
 .trust li::before { content: "✓"; color: var(--navy-3); font-weight: 800; margin-right: .45em; }
 
