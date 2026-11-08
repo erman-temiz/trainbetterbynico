@@ -1,7 +1,7 @@
 """Publish the static site with explicit TLS and verify the public response."""
 
 from contextlib import contextmanager
-from ftplib import FTP_TLS
+from ftplib import FTP_TLS, error_perm
 from html import escape
 from io import BytesIO
 from pathlib import Path
@@ -12,20 +12,49 @@ import ssl
 
 
 PUBLIC_URL = "https://trainbetterbynico.de/"
-FILES = ("styles.css", "impressum.html", "datenschutz.html", "index.html")
+ROOT = Path("website")
 ADDRESS_TOKEN = "{{IMPRESSUM_STRASSE}}"
+ADDRESS_PAGES = {"impressum.html", "datenschutz.html"}
+
+
+def collect_files():
+    """All files below website/, with index.html last so the new page goes live only at the end."""
+    files = sorted(
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.rglob("*")
+        if path.is_file() and not any(part.startswith(".") for part in path.relative_to(ROOT).parts)
+    )
+    if "index.html" not in files:
+        raise SystemExit("website/index.html fehlt.")
+    files.remove("index.html")
+    return files + ["index.html"]
 
 
 def build_pages(street):
     pages = {}
-    for name in FILES:
-        source = Path("website", name).read_text(encoding="utf-8")
-        if name in {"impressum.html", "datenschutz.html"}:
+    for name in collect_files():
+        data = (ROOT / name).read_bytes()
+        if name in ADDRESS_PAGES:
+            source = data.decode("utf-8")
             if source.count(ADDRESS_TOKEN) != 1:
                 raise SystemExit(f"Adressplatzhalter fehlt oder ist doppelt in {name}.")
-            source = source.replace(ADDRESS_TOKEN, escape(street))
-        pages[name] = source.encode("utf-8")
+            data = source.replace(ADDRESS_TOKEN, escape(street)).encode("utf-8")
+        pages[name] = data
     return pages
+
+
+def ensure_dirs(ftp, names):
+    for folder in sorted({str(Path(n).parent) for n in names if "/" in n}, key=len):
+        try:
+            ftp.mkd(folder)
+        except error_perm as error:
+            if not str(error).startswith("550"):
+                raise
+
+
+def temp_name(name, batch):
+    path = Path(name)
+    return str(path.with_name(f".deploy-{batch}-{path.name}")) if path.parent != Path(".") else f".deploy-{batch}-{name}"
 
 
 @contextmanager
@@ -79,16 +108,17 @@ def deploy():
     with verified_ftp(host, tls) as ftp:
         ftp.login(user, password)
         ftp.prot_p()
+        ensure_dirs(ftp, pages)
         for name, content in pages.items():
-            ftp.storbinary(f"STOR .deploy-{batch}-{name}", BytesIO(content))
-        for name in FILES:
-            ftp.rename(f".deploy-{batch}-{name}", name)
+            ftp.storbinary(f"STOR {temp_name(name, batch)}", BytesIO(content))
+        for name in pages:
+            ftp.rename(temp_name(name, batch), name)
 
     for name, content in pages.items():
         with urlopen(f"{PUBLIC_URL}{name}?deploy={batch}", timeout=15, context=tls) as response:
             if response.read() != content:
                 raise SystemExit(f"HTTPS-Prüfung fehlgeschlagen: {name}")
-    print("Alle vier Dateien wurden über HTTPS verifiziert.")
+    print(f"Alle {len(pages)} Dateien wurden über HTTPS verifiziert.")
 
 
 if __name__ == "__main__":

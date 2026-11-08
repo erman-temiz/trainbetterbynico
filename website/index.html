@@ -3,76 +3,335 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Train Better by Nico. Personal Training mit Nicolas in seinem Homegym in Lispenhausen.">
+<title>Train Better by Nico – Personal Training in Rotenburg an der Fulda</title>
+<meta name="description" content="Individuelles Personal Training mit sportwissenschaftlichem Hintergrund. Im Homegym in Lispenhausen, im Freien oder bei Ihnen zu Hause. Stark und gesund durch den Alltag.">
 <meta name="referrer" content="no-referrer">
-<title>Train Better by Nico – Personal Training in Lispenhausen</title>
+<meta name="theme-color" content="#061C40">
+<meta property="og:title" content="Train Better by Nico – Personal Training">
+<meta property="og:description" content="Stark und gesund durch den Alltag. Individuelles Personal Training mit sportwissenschaftlichem Hintergrund.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://trainbetterbynico.de/">
+<meta property="og:image" content="https://trainbetterbynico.de/assets/logo-dark.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
+
+<header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="#start">TRAIN BETTER <span>BY NICO</span></a>
-    <nav aria-label="Hauptnavigation">
-      <a href="#angebot">Angebot</a>
-      <a href="#fuer-wen">Für wen?</a>
-      <a href="#kontakt">Kontakt</a>
+    <a class="brand" href="#start" aria-label="Train Better by Nico – zur Startseite">
+      <img src="assets/mark-light.png" alt="" width="68" height="40">
+      <span>TRAIN BETTER<small>by Nico</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="hauptnav" aria-label="Menü öffnen">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="hauptnav" aria-label="Hauptnavigation">
+      <a href="#training">Training</a>
+      <a href="#preise">Preise</a>
+      <a href="#ueber-nico">Über Nico</a>
+      <a class="btn btn-light" href="#kontakt">Ersttermin anfragen</a>
     </nav>
   </div>
 </header>
-<main class="wrap" id="start">
-  <section class="hero" aria-labelledby="titel">
-    <div>
-      <p class="eyebrow">Personal Training · Lispenhausen</p>
-      <h1 id="titel">Train Better<br>by Nico.</h1>
-      <p class="lead">Personal Training mit Nicolas in seinem Homegym in Lispenhausen.</p>
-      <a class="button" href="#kontakt">Training anfragen <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="art" aria-hidden="true">
-      <svg viewBox="0 0 320 160" fill="none" focusable="false">
-        <g transform="rotate(-16 160 80)" stroke="currentColor" stroke-width="12" stroke-linejoin="round">
-          <path d="M25 80h270M112 66h96v28h-96z" />
-          <rect x="48" y="40" width="25" height="80" rx="5" />
-          <rect x="73" y="23" width="39" height="114" rx="6" />
-          <rect x="208" y="23" width="39" height="114" rx="6" />
-          <rect x="247" y="40" width="25" height="80" rx="5" />
-        </g>
-      </svg>
-      <span>HOMEGYM · LISPENHAUSEN</span>
-    </div>
-  </section>
-  <div class="details">
-    <div class="cards">
-      <section id="angebot" aria-labelledby="angebot-titel">
-        <p class="eyebrow">01 · Angebot</p>
-        <h3 id="angebot-titel">Das Training</h3>
-        <p>Das Personal Training findet in Nicolas’ Homegym in Lispenhausen statt.</p>
-      </section>
-      <section id="fuer-wen" aria-labelledby="zielgruppe-titel">
-        <p class="eyebrow">02 · Zielgruppe</p>
-        <h3 id="zielgruppe-titel">Für wen ist das Training?</h3>
-        <p>Schreib Nicolas, wenn du wissen möchtest, ob das Training zu deinen Zielen passt.</p>
-      </section>
+
+<main id="start">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Personal Training · Rotenburg an der Fulda</p>
+        <h1>Stark und gesund durch den Alltag.</h1>
+        <p class="lead">Individuelles Personal Training mit sportwissenschaftlichem Hintergrund – für mehr Kraft, Beweglichkeit und Leistungsfähigkeit. Im Homegym in Lispenhausen, im Freien oder bei Ihnen zu Hause.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#kontakt">Ersttermin anfragen <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#preise">Preise ansehen</a>
+        </div>
+        <ul class="trust">
+          <li>Sportwissenschaftler (B.&nbsp;A.)</li>
+          <li>Fitnesstrainer A-Lizenz</li>
+          <li>Rehasport-Qualifikation</li>
+        </ul>
+      </div>
+      <div class="hero-logo">
+        <img src="assets/logo-dark.png" alt="Logo Train Better by Nico" width="436" height="286">
+        <p>1:1 Personal Training</p>
+      </div>
     </div>
   </div>
-  <section class="contact" id="kontakt" aria-labelledby="kontakt-titel">
-    <div>
-      <h2 id="kontakt-titel">Kontakt</h2>
-      <p>Schreib Nicolas, wenn du Fragen zum Training hast.</p>
+
+  <!-- SCHWERPUNKTE -->
+  <section id="training">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Trainingsschwerpunkte</p>
+        <h2>Training, das zu Ihnen passt.</h2>
+        <p class="lead">Jedes Training wird individuell auf Ihre Ziele, Voraussetzungen und Bedürfnisse abgestimmt – damit Sie langfristig gesund und aktiv bleiben.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h3>Ganzheitliche Fitness &amp; Gesundheit</h3>
+          <p>Ein ausgewogenes Training für Körper und Wohlbefinden – Schritt für Schritt aufgebaut.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/></svg></div>
+          <h3>Kraft &amp; Muskelaufbau</h3>
+          <p>Gezielter Kraftaufbau mit sauberer Technik und sinnvoller Steigerung.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 6h8M7 10h10M8 14h8M9 18h6"/></svg></div>
+          <h3>Rücken- &amp; Gelenkgesundheit</h3>
+          <p>Stabilität und Belastbarkeit für einen schmerzfreieren, sicheren Alltag.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><path d="M4 9l8 2 8-2M12 11v4l-4 6M12 15l4 6"/></svg></div>
+          <h3>Beweglichkeit &amp; Mobilität</h3>
+          <p>Mehr Bewegungsfreiheit und Leichtigkeit – im Training und im Alltag.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div>
+          <h3>Gewichtsreduktion</h3>
+          <p>Nachhaltig abnehmen durch die Kombination aus Training und alltagstauglichen Gewohnheiten.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+          <h3>Leistungsfähigkeit</h3>
+          <p>Mehr Ausdauer, Energie und Belastbarkeit für alles, was Ihnen wichtig ist.</p>
+        </article>
+      </div>
+      <div class="note-strip">
+        <p>Zusätzlich: Athletiktraining für Sportler und Vereine.</p>
+        <a class="btn btn-ghost" href="#weitere">Mehr erfahren</a>
+      </div>
     </div>
-    <ul aria-label="Kontaktwege">
-      <li><strong>E-Mail</strong> <a href="mailto:info@trainbetterbynico.de">info@trainbetterbynico.de</a></li>
-      <li><strong>Instagram</strong> <a href="https://www.instagram.com/trainbetterbynico/">@trainbetterbynico</a></li>
-    </ul>
   </section>
+
+  <!-- SO STARTEN SIE -->
+  <section class="section-grey" id="ersttermin">
+    <div class="wrap start-grid">
+      <div>
+        <p class="eyebrow">So starten Sie</p>
+        <h2>Ihr Weg zum Training.</h2>
+        <p class="lead">Am Anfang steht immer ein ausführlicher Ersttermin. So wird Ihr Training von Beginn an genau auf Sie zugeschnitten.</p>
+        <ol class="steps">
+          <li>
+            <h3>Ersttermin vereinbaren</h3>
+            <p>Erstgespräch, Anamnese, Bewegungsanalyse und Vermessung.</p>
+          </li>
+          <li>
+            <h3>Individuelle Trainingsplanung</h3>
+            <p>Aus den Ergebnissen entsteht Ihr persönlicher Trainingsplan.</p>
+          </li>
+          <li>
+            <h3>Training nach Ihrem Modell</h3>
+            <p>Einzeltermine, 5er-/10er-Karte oder eine längerfristige Trainingsbetreuung – Sie entscheiden.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="offer">
+        <span class="badge">Verbindlicher erster Schritt</span>
+        <h3>Erstanamnese &amp; Trainingsplanung</h3>
+        <p class="price-big">85&nbsp;€ <small>· ca. 60 Minuten</small></p>
+        <ul>
+          <li>Ausführliches Erstgespräch und Anamnese</li>
+          <li>Erfassung Ihrer Ziele und gesundheitlichen Voraussetzungen</li>
+          <li>Individuelle Bewegungsanalyse und Vermessung</li>
+          <li>Auswertung der Ergebnisse</li>
+          <li>Erstellung Ihrer individuellen Trainingsplanung</li>
+        </ul>
+        <a class="btn btn-light" href="#kontakt">Ersttermin anfragen <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAININGSORTE -->
+  <section id="orte">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Trainingsorte</p>
+        <h2>Dort trainieren, wo es für Sie passt.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card loc">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>
+          <h3>Homegym in Lispenhausen</h3>
+          <p>Der Hauptstandort: ein hochwertig ausgestattetes, privates Homegym – ruhig, persönlich und ohne Studio-Trubel.</p>
+          <span class="tag">Hauptstandort</span>
+        </article>
+        <article class="card loc">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 12H5zM8 21h8M12 15v6"/></svg></div>
+          <h3>Im Freien</h3>
+          <p>Training an der frischen Luft – abwechslungsreich und mit dem, was die Natur bietet.</p>
+          <span class="tag">Nach Absprache</span>
+        </article>
+        <article class="card loc">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h-2v-5l2-5h10l3 5h3v5h-2M7 17a2 2 0 1 0 4 0 2 2 0 1 0-4 0M15 17a2 2 0 1 0 4 0 2 2 0 1 0-4 0"/></svg></div>
+          <h3>Bei Ihnen zu Hause</h3>
+          <p>Sie möchten in Ihren eigenen vier Wänden trainieren? Nico kommt zu Ihnen.</p>
+          <span class="tag">Zzgl. Anfahrtskosten</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREISE -->
+  <section class="section-grey" id="preise">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Preise</p>
+        <h2>Transparent und flexibel.</h2>
+        <p class="lead">Nach dem Ersttermin wählen Sie, wie Sie trainieren möchten – einzeln oder mit Trainingskarte zum Vorteilspreis.</p>
+      </div>
+      <div class="price-wrap">
+        <div class="price-card">
+          <h3>30 Minuten <span>Personal Training</span></h3>
+          <div class="price-row">
+            <span class="name">Einzeltraining</span><span class="val">50&nbsp;€</span>
+          </div>
+          <div class="price-row">
+            <span class="name">5er-Karte</span><span class="val">245&nbsp;€</span>
+            <span class="per">49&nbsp;€ pro Einheit</span>
+          </div>
+          <div class="price-row hl">
+            <span class="name">10er-Karte <span class="save">Bester Preis</span></span><span class="val">460&nbsp;€</span>
+            <span class="per">46&nbsp;€ pro Einheit · Sie sparen 40&nbsp;€</span>
+          </div>
+        </div>
+        <div class="price-card">
+          <h3>60 Minuten <span>Personal Training</span></h3>
+          <div class="price-row">
+            <span class="name">Einzeltraining</span><span class="val">85&nbsp;€</span>
+          </div>
+          <div class="price-row">
+            <span class="name">5er-Karte</span><span class="val">415&nbsp;€</span>
+            <span class="per">83&nbsp;€ pro Einheit</span>
+          </div>
+          <div class="price-row hl">
+            <span class="name">10er-Karte <span class="save">Bester Preis</span></span><span class="val">800&nbsp;€</span>
+            <span class="per">80&nbsp;€ pro Einheit · Sie sparen 50&nbsp;€</span>
+          </div>
+        </div>
+      </div>
+      <p class="price-foot">Vor Beginn des regelmäßigen Trainings ist der Ersttermin (85&nbsp;€) verbindlich. Bei Training bei Ihnen zu Hause kommen Anfahrtskosten hinzu.</p>
+
+      <div class="plan">
+        <div>
+          <p class="eyebrow">Regelmäßige Trainingsbetreuung</p>
+          <h3>3 oder 6 Monate – mit festem Trainingsrhythmus.</h3>
+          <p>Für alle, die dranbleiben möchten: ein festes monatliches Kontingent an Trainingseinheiten, monatlich abgerechnet. Preise und Konditionen erhalten Sie gerne auf Anfrage.</p>
+          <a class="btn btn-primary" href="mailto:info@trainbetterbynico.de?subject=Anfrage%20Trainingsbetreuung">Konditionen anfragen</a>
+        </div>
+        <div class="plan-opts">
+          <div><strong>1× pro Woche</strong><span>4 Einheiten / Monat</span></div>
+          <div><strong>2× pro Woche</strong><span>8 Einheiten / Monat</span></div>
+          <div><strong>3 Monate</strong><span>Laufzeit</span></div>
+          <div><strong>6 Monate</strong><span>Laufzeit</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEITERE ANGEBOTE -->
+  <section class="section-navy" id="weitere">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Weitere Angebote auf Anfrage</p>
+        <h2>Mehr als Training.</h2>
+      </div>
+      <div class="grid-2">
+        <article class="card loc">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4.4 0-8-3.6-8-8 0-3 2-6 5-6 1.3 0 2.2.6 3 .6S13.7 7 15 7c3 0 5 3 5 6 0 4.4-3.6 8-8 8zM12 7c0-2 1-4 3-4"/></svg></div>
+          <h3>Ernährungs- &amp; Sporternährungsberatung</h3>
+          <p>Individuelle Unterstützung rund um Ernährung, sportgerechte Ernährung und Gewichtsreduktion.</p>
+          <span class="tag">Auf Anfrage</span>
+        </article>
+        <article class="card loc">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 2 4 5"/></svg></div>
+          <h3>Athletiktraining für Vereine</h3>
+          <p>Individuelle oder regelmäßige Athletikbetreuung für Sportvereine und Mannschaften – mit Fokus auf Kraft, Verletzungsprävention und sportartspezifische Leistungsfähigkeit.</p>
+          <span class="tag">Auf Anfrage</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER NICO -->
+  <section id="ueber-nico">
+    <div class="wrap about-grid">
+      <div class="about-visual">
+        <img src="assets/logo-light.png" alt="" width="436" height="286">
+      </div>
+      <div>
+        <p class="eyebrow">Über Nico</p>
+        <h2>Sportwissenschaft, die im Alltag ankommt.</h2>
+        <p class="lead">Nico ist Sportwissenschaftler und Personal Trainer. Sein Ziel: Menschen dabei zu unterstützen, ihre Fitness, Kraft, Beweglichkeit und Leistungsfähigkeit zu verbessern – und langfristig gesund und aktiv zu bleiben.</p>
+        <ul class="quals">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c3 2 9 2 12 0v-5"/></svg><div>Bachelor of Arts Sportwissenschaft<span>abgeschlossen</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c3 2 9 2 12 0v-5"/></svg><div>Master of Arts Trainingswissenschaft &amp; Sporternährung<span>laufendes Studium</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg><div>Fitnesstrainer A-, B- und C-Lizenz</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg><div>Rehasport-Qualifikation</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg><div>Nordic-Walking-Lizenz</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg><div>Zulassung für Präventionskurse</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section-navy" id="kontakt">
+    <div class="wrap contact-box">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Bereit für den ersten Schritt?</h2>
+        <p class="lead" style="color:#d9e1ef">Schreiben Sie Nico für Ihren Ersttermin oder bei Fragen zum Training. Sie erhalten zeitnah eine Rückmeldung.</p>
+      </div>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:info@trainbetterbynico.de?subject=Anfrage%20Ersttermin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span><small>E-Mail</small><strong>info@trainbetterbynico.de</strong></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/trainbetterbynico/" rel="noopener" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>
+            <span><small>Instagram</small><strong>@trainbetterbynico</strong></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
 </main>
-<footer>
+
+<footer class="site-footer">
   <div class="wrap bar">
-    <span>Train Better by Nico · Lispenhausen</span>
+    <span>© Train Better by Nico · Lispenhausen, Rotenburg an der Fulda</span>
     <nav aria-label="Rechtliche Informationen">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
     </nav>
   </div>
 </footer>
+
+<script>
+(function () {
+  var btn = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('hauptnav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  });
+})();
+</script>
 </body>
 </html>
