@@ -1,0 +1,35 @@
+name: Website bei Netcup veröffentlichen
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - website/**
+      - .github/deploy-netcup.py
+      - .github/workflows/netcup.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netcup-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Quellcode auschecken
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Upload und HTTPS-Prüfung
+        env:
+          NETCUP_FTP_HOST: ${{ secrets.NETCUP_FTP_HOST }}
+          NETCUP_FTP_USER: ${{ secrets.NETCUP_FTP_USER }}
+          NETCUP_FTP_PASSWORD: ${{ secrets.NETCUP_FTP_PASSWORD }}
+          IMPRESSUM_STRASSE: ${{ secrets.IMPRESSUM_STRASSE }}
+        run: python3 .github/deploy-netcup.py
