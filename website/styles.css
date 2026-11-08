@@ -177,6 +177,9 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .offer li::before { content: "✓"; position: absolute; left: 4px; color: #9fb8e6; font-weight: 800; }
 
 /* Locations */
+.photo-card.loc .card-body { display: flex; flex-direction: column; flex: 1; }
+.start-photo { margin: 12px 0 0; }
+.start-photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
 .loc { display: flex; flex-direction: column; }
 .loc .tag { margin-top: auto; padding-top: 16px; font-size: .85rem; font-weight: 700; color: var(--navy-3); }
 
