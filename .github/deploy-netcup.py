@@ -43,11 +43,10 @@ def build_pages(street):
             if 'href="styles.css"' not in source:
                 raise SystemExit(f"Stylesheet-Link fehlt in {name}.")
             data = source.replace('href="styles.css"', f'href="styles.css?v={css_version}"').encode("utf-8")
-        if name in ADDRESS_PAGES:
-            source = data.decode("utf-8")
-            if source.count(ADDRESS_TOKEN) != 1:
-                raise SystemExit(f"Adressplatzhalter fehlt oder ist doppelt in {name}.")
-            data = source.replace(ADDRESS_TOKEN, escape(street)).encode("utf-8")
+        if name in ADDRESS_PAGES and ADDRESS_TOKEN in data.decode("utf-8"):
+            if not street:
+                raise SystemExit(f"{name} nutzt {ADDRESS_TOKEN}, aber das Secret IMPRESSUM_STRASSE fehlt.")
+            data = data.decode("utf-8").replace(ADDRESS_TOKEN, escape(street)).encode("utf-8")
         pages[name] = data
     return pages
 
@@ -101,11 +100,12 @@ def verified_ftp(host, tls):
 
 
 def deploy():
-    keys = ("NETCUP_FTP_HOST", "NETCUP_FTP_USER", "NETCUP_FTP_PASSWORD", "IMPRESSUM_STRASSE")
+    keys = ("NETCUP_FTP_HOST", "NETCUP_FTP_USER", "NETCUP_FTP_PASSWORD")
     missing = [key for key in keys if not os.environ.get(key)]
     if missing:
         raise SystemExit("GitHub-Secrets fehlen: " + ", ".join(missing))
-    host, user, password, street = (os.environ[key] for key in keys)
+    host, user, password = (os.environ[key] for key in keys)
+    street = os.environ.get("IMPRESSUM_STRASSE", "")
     pages = build_pages(street)
     tls = ssl.create_default_context()
 
