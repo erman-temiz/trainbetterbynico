@@ -131,6 +131,12 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 }
 .note-strip p { margin: 0; font-weight: 600; color: var(--ink); }
 
+/* Photo cards */
+.photo-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.photo-card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--grey); }
+.photo-card .card-body { padding: 22px 26px 26px; }
+.photo-card h3 { margin-bottom: .35em; }
+
 /* Start / Ersttermin */
 .start-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
@@ -260,7 +266,8 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
   .hero::before { width: 240px; height: 150px; }
   .hero::after { display: none; }
   .hero-logo { display: none; }
-  .card, .offer, .plan { padding: 24px; }
+  .card:not(.photo-card), .offer, .plan { padding: 24px; }
+  .photo-card .card-body { padding: 20px 22px 24px; }
   .price-row { padding: 16px 20px; }
   .site-footer a { margin-left: 0; margin-right: 18px; }
 }
