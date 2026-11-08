@@ -217,6 +217,7 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .section-navy .card p { color: #c5d0e3; }
 .section-navy .icon { background: var(--white); color: var(--navy); }
 .section-navy .card .tag { color: #9fb8e6; }
+#weitere .photo-card img { aspect-ratio: 2 / 1; }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
