@@ -129,6 +129,20 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .photo-card .card-body { padding: 22px 26px 26px; }
 .photo-card h3 { margin-bottom: .35em; }
 
+/* Platzhalter, bis echte Fotos da sind */
+.photo-placeholder {
+  aspect-ratio: 3 / 2; display: grid; place-items: center; position: relative; overflow: hidden;
+  background: var(--grey);
+}
+.photo-placeholder::before {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-58deg, rgba(6,28,64,.05) 0 12px, transparent 12px 30px);
+}
+.photo-placeholder img { position: relative; width: 26%; max-width: 120px; height: auto; opacity: .35; aspect-ratio: auto; background: none; }
+.ph-navy { background: var(--navy-3); aspect-ratio: 2 / 1; }
+.ph-navy::before { background: repeating-linear-gradient(-58deg, rgba(255,255,255,.06) 0 12px, transparent 12px 30px); }
+.ph-navy img { opacity: .5; }
+
 /* Start / Ersttermin */
 .start-section { padding-top: 0; }
 .start-banner {
