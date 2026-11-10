@@ -346,7 +346,7 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 
 
 /* ===== Dunkler Modus ===== */
-/* Variante A – Nachtblau: alles in Nicos Markenblau, nur dunkler */
+/* Nachtblau: alles in Nicos Markenblau, nur dunkler */
 [data-theme="dark"] {
   --bg: #071630;
   --bg-alt: #0a1d3d;
@@ -375,51 +375,6 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
   --ph-stripe: rgba(255,255,255,.04);
   --ph-logo-filter: invert(1);
   color-scheme: dark;
-}
-/* Variante B – Graphit: neutrales Dunkelgrau, Kopf und Akzente bleiben Markenblau */
-[data-theme="dark"][data-dark="graphit"] {
-  --bg: #16181c;
-  --bg-alt: #1d2026;
-  --surface: #242830;
-  --surface-2: #2c313a;
-  --field-bg: #1d2026;
-  --ink: #f3f4f6;
-  --text: #c9cdd4;
-  --muted: #9aa1ad;
-  --brand: #061C40;
-  --brand-2: #0c2a5a;
-  --brand-3: #133a78;
-  --accent: #8fb3f0;
-  --link: #a9c5f5;
-  --footer: #0e1013;
-  --footer-text: #9aa1ad;
-}
-/* Variante C – Schwarz & Silber: sehr dunkel, Akzente in Silber */
-[data-theme="dark"][data-dark="silber"] {
-  --bg: #0c0c0d;
-  --bg-alt: #141416;
-  --surface: #1b1b1e;
-  --surface-2: #242428;
-  --field-bg: #141416;
-  --ink: #fafafa;
-  --text: #cfd2d6;
-  --muted: #9b9fa6;
-  --brand: #050506;
-  --brand-2: #1c1c20;
-  --brand-3: #2a2a30;
-  --brand-edge: rgba(255,255,255,.09);
-  --on-brand: #d6d9de;
-  --on-brand-muted: #b9bdc4;
-  --on-brand-soft: #c0c6cf;
-  --accent: #c0c6cf;
-  --link: #dfe3e8;
-  --btn-bg: #d9dde2;
-  --btn-fg: #0c0c0d;
-  --btn-hover: #f1f3f5;
-  --btn-ghost: #d9dde2;
-  --plan-border: rgba(192,198,207,.5);
-  --footer: #000000;
-  --footer-text: #8d9198;
 }
 [data-theme="dark"] .price-row .save { background: var(--btn-bg); color: var(--btn-fg); }
 [data-theme="dark"] .field input:focus, [data-theme="dark"] .field select:focus, [data-theme="dark"] .field textarea:focus { box-shadow: 0 0 0 3px rgba(143,179,240,.25); }
