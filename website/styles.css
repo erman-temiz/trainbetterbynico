@@ -255,6 +255,18 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .price-row .name { font-weight: 600; color: var(--ink); }
 .price-row .val { font-weight: 800; font-size: 1.35rem; color: var(--ink); text-align: right; }
 .price-row .per { grid-column: 1 / -1; font-size: .88rem; color: var(--muted); margin-top: -4px; }
+.price-btn {
+  grid-column: 1 / -1; justify-self: start; margin-top: 8px;
+  display: inline-flex; align-items: center; gap: .4em; padding: .5em 1em; border-radius: 999px;
+  font-size: .85rem; font-weight: 700; text-decoration: none;
+  color: var(--btn-ghost); border: 1.5px solid var(--line); transition: background .2s, color .2s, border-color .2s;
+}
+.price-btn:hover, .price-btn:focus-visible { background: var(--btn-bg); color: var(--btn-fg); border-color: var(--btn-bg); }
+.price-row.hl .price-btn { background: var(--btn-bg); color: var(--btn-fg); border-color: var(--btn-bg); }
+.price-row.hl .price-btn:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
+.contact-form.flash { animation: formflash 1.2s ease-out; }
+@keyframes formflash { 0% { box-shadow: 0 0 0 0 rgba(143,179,240,.9); } 100% { box-shadow: 0 0 0 18px rgba(143,179,240,0); } }
+@media (prefers-reduced-motion: reduce) { .contact-form.flash { animation: none; } }
 .price-row.hl { background: var(--surface-2); }
 .price-row .save { display: inline-block; margin-left: .5em; font-size: .72rem; font-weight: 700; color: var(--white); background: var(--navy-3); padding: .2em .55em; border-radius: 999px; vertical-align: middle; }
 .price-foot { margin-top: 18px; font-size: .95rem; color: var(--muted); }

@@ -203,7 +203,7 @@
           <li>Auswertung der Ergebnisse</li>
           <li>Erstellung Ihrer individuellen Trainingsplanung</li>
         </ul>
-        <a class="btn btn-light" href="#kontakt">Ersttermin anfragen <span aria-hidden="true">→</span></a>
+        <a class="btn btn-light" href="#kontakt" data-anliegen="Ersttermin" data-paket="Ersttermin: Erstanamnese &amp; Trainingsplanung (85 €)">Ersttermin anfragen <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -262,28 +262,34 @@
           <h3>30 Minuten <span>Personal Training</span></h3>
           <div class="price-row">
             <span class="name">Einzeltraining</span><span class="val">50&nbsp;€</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="Einzeltraining 30 Minuten (50 €)" aria-label="Einzeltraining 30 Minuten (50 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
           <div class="price-row">
             <span class="name">5er-Karte</span><span class="val">245&nbsp;€</span>
             <span class="per">49&nbsp;€ pro Einheit</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="5er-Karte à 30 Minuten (245 €)" aria-label="5er-Karte à 30 Minuten (245 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
           <div class="price-row hl">
             <span class="name">10er-Karte <span class="save">Bester Preis</span></span><span class="val">460&nbsp;€</span>
             <span class="per">46&nbsp;€ pro Einheit · Sie sparen 40&nbsp;€</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="10er-Karte à 30 Minuten (460 €)" aria-label="10er-Karte à 30 Minuten (460 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
         </div>
         <div class="price-card">
           <h3>60 Minuten <span>Personal Training</span></h3>
           <div class="price-row">
             <span class="name">Einzeltraining</span><span class="val">85&nbsp;€</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="Einzeltraining 60 Minuten (85 €)" aria-label="Einzeltraining 60 Minuten (85 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
           <div class="price-row">
             <span class="name">5er-Karte</span><span class="val">415&nbsp;€</span>
             <span class="per">83&nbsp;€ pro Einheit</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="5er-Karte à 60 Minuten (415 €)" aria-label="5er-Karte à 60 Minuten (415 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
           <div class="price-row hl">
             <span class="name">10er-Karte <span class="save">Bester Preis</span></span><span class="val">800&nbsp;€</span>
             <span class="per">80&nbsp;€ pro Einheit · Sie sparen 50&nbsp;€</span>
+            <a class="price-btn" href="#kontakt" data-anliegen="Personal Training" data-paket="10er-Karte à 60 Minuten (800 €)" aria-label="10er-Karte à 60 Minuten (800 €) anfragen">Jetzt anfragen <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
@@ -294,7 +300,7 @@
           <p class="eyebrow">Regelmäßige Trainingsbetreuung</p>
           <h3>3 oder 6 Monate – mit festem Trainingsrhythmus.</h3>
           <p>Für alle, die dranbleiben möchten: ein festes monatliches Kontingent an Trainingseinheiten, monatlich abgerechnet. Preise und Konditionen erhalten Sie gerne auf Anfrage.</p>
-          <a class="btn btn-primary" href="#kontakt" data-anliegen="Trainingsbetreuung (3 oder 6 Monate)">Konditionen anfragen</a>
+          <a class="btn btn-primary" href="#kontakt" data-anliegen="Trainingsbetreuung (3 oder 6 Monate)" data-paket="Regelmäßige Trainingsbetreuung (3 oder 6 Monate)">Konditionen anfragen</a>
         </div>
         <div class="plan-opts">
           <div><strong>1× pro Woche</strong><span>4 Einheiten / Monat</span></div>
@@ -398,7 +404,7 @@
           <label class="field"><span>Telefon <span class="opt">(optional)</span></span><input type="tel" name="telefon" maxlength="50" autocomplete="tel"></label>
         </div>
         <label class="field">E-Mail *<input type="email" name="email" required maxlength="200" autocomplete="email"></label>
-        <label class="field">Nachricht *<textarea name="nachricht" rows="5" required maxlength="5000" placeholder="Ihre Ziele, Fragen oder Wunschtermine"></textarea></label>
+        <label class="field">Nachricht *<textarea name="nachricht" id="form-nachricht" rows="5" required maxlength="5000" placeholder="Ihre Ziele, Fragen oder Wunschtermine"></textarea></label>
         <label class="check"><input type="checkbox" name="datenschutz" required> <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. *</span></label>
         <button class="btn btn-primary" type="submit">Anfrage senden <span aria-hidden="true">→</span></button>
         <p class="form-note">* Pflichtfelder. Bitte keine sensiblen Gesundheitsdaten senden – diese besprechen Sie am besten persönlich beim Ersttermin.</p>
@@ -424,8 +430,22 @@
   var t = document.getElementById('form-t');
   if (t) t.value = Math.floor(Date.now() / 1000);
   var sel = document.getElementById('form-anliegen');
+  var msg = document.getElementById('form-nachricht');
+  var lastPrefill = '';
   document.querySelectorAll('[data-anliegen]').forEach(function (a) {
-    a.addEventListener('click', function () { if (sel) sel.value = a.getAttribute('data-anliegen'); });
+    a.addEventListener('click', function () {
+      if (sel) sel.value = a.getAttribute('data-anliegen');
+      var paket = a.getAttribute('data-paket');
+      if (paket && msg && (msg.value.trim() === '' || msg.value === lastPrefill)) {
+        lastPrefill = 'Ich interessiere mich für: ' + paket + '\n\n';
+        msg.value = lastPrefill;
+      }
+      var form = document.querySelector('.contact-form');
+      if (form) {
+        form.classList.remove('flash'); void form.offsetWidth; form.classList.add('flash');
+        setTimeout(function () { var n = form.querySelector('input[name=name]'); if (n) n.focus({ preventScroll: true }); }, 600);
+      }
+    });
   });
   var msgs = {
     pflicht: 'Bitte füllen Sie alle Pflichtfelder aus und bestätigen Sie die Datenschutzerklärung.',
