@@ -1,0 +1,11 @@
+# Seiten immer frisch vom Server holen, damit Änderungen sofort sichtbar sind.
+# Bilder, Schrift und CSS dürfen lange im Cache bleiben: ihre URLs enthalten
+# eine Versionsnummer (?v=...), die sich bei jeder Änderung automatisch ändert.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|webp|png|jpg|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

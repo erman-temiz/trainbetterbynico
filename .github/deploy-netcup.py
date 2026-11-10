@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.request import urlopen
 from uuid import uuid4
 import os
+import re
 import ssl
 
 
@@ -16,6 +17,7 @@ PUBLIC_URL = "https://trainbetterbynico.de/"
 ROOT = Path("website")
 ADDRESS_TOKEN = "{{IMPRESSUM_STRASSE}}"
 ADDRESS_PAGES = {"impressum.html", "datenschutz.html"}
+ASSET_REF = re.compile(r"((?:assets/[\w.-]+|favicon\.png|apple-touch-icon\.png))(?=[\s\"])")
 
 
 def collect_files():
@@ -23,7 +25,8 @@ def collect_files():
     files = sorted(
         path.relative_to(ROOT).as_posix()
         for path in ROOT.rglob("*")
-        if path.is_file() and not any(part.startswith(".") for part in path.relative_to(ROOT).parts)
+        if path.is_file()
+        and (path.name == ".htaccess" or not any(part.startswith(".") for part in path.relative_to(ROOT).parts))
     )
     if "index.html" not in files:
         raise SystemExit("website/index.html fehlt.")
@@ -35,14 +38,27 @@ def build_pages(street):
     pages = {}
     # Cache-busting: every HTML page references styles.css with a content hash,
     # so browsers and server caches never mix new pages with an old stylesheet.
-    css_version = sha256((ROOT / "styles.css").read_bytes()).hexdigest()[:10]
+    # Same for every image and icon: replaced photos keep their file name,
+    # so the hash in the URL forces browsers to load the new version.
+    def version(rel):
+        return sha256((ROOT / rel).read_bytes()).hexdigest()[:10]
+
+    def bust(match):
+        rel = match.group(1)
+        if rel.endswith(".woff2") or not (ROOT / rel).is_file():
+            return rel  # Schrift wird per CSS ohne Version geladen, Preload muss identisch sein
+        return f"{rel}?v={version(rel)}"
+
+    css_version = version("styles.css")
     for name in collect_files():
         data = (ROOT / name).read_bytes()
         if name.endswith(".html"):
             source = data.decode("utf-8")
             if 'href="styles.css"' not in source:
                 raise SystemExit(f"Stylesheet-Link fehlt in {name}.")
-            data = source.replace('href="styles.css"', f'href="styles.css?v={css_version}"').encode("utf-8")
+            source = source.replace('href="styles.css"', f'href="styles.css?v={css_version}"')
+            source = ASSET_REF.sub(bust, source)
+            data = source.encode("utf-8")
         if name in ADDRESS_PAGES and ADDRESS_TOKEN in data.decode("utf-8"):
             if not street:
                 raise SystemExit(f"{name} nutzt {ADDRESS_TOKEN}, aber das Secret IMPRESSUM_STRASSE fehlt.")
@@ -124,6 +140,8 @@ def deploy():
             ftp.rename(temp_name(name, batch), name)
 
     for name, content in pages.items():
+        if name == ".htaccess":
+            continue  # wird vom Server nie ausgeliefert
         with urlopen(f"{PUBLIC_URL}{name}?deploy={batch}", timeout=15, context=tls) as response:
             body = response.read()
         if name.endswith(".php"):
