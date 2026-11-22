@@ -356,6 +356,9 @@ section { padding: clamp(64px, 8vw, 104px) 0; }
 .site-footer a { color: var(--on-brand); text-decoration: none; margin-left: 22px; }
 .site-footer a:hover { text-decoration: underline; }
 .site-footer nav a:first-child { margin-left: 0; }
+.site-footer .credit { flex-basis: 100%; margin: 6px 0 0; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.08); font-size: .8rem; opacity: .75; }
+.site-footer .credit a { margin: 0; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.site-footer .credit a:hover { opacity: 1; color: var(--on-brand); }
 
 /* Legal pages */
 .legal { padding: 64px 0 96px; max-width: 760px; }
